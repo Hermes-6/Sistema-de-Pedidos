@@ -15,9 +15,9 @@ export function Botton() {
   return (
     
 <div className='flex items-center gap-3 mt-4'>
-  <button className='px-3 py-1 bg-red-500 text-white rounded'onClick={menos}> -1 </button>
+  <button className='cursor-pointer px-3 py-1 bg-red-500 text-white rounded'onClick={menos}> -1 </button>
   <span className='text-lg font-bold'>{numeroactual}</span>
-  <button className='px-3 py-1 bg-green-500 text-white rounded' onClick={mas}>   +1 </button>
+  <button className='cursor-pointer px-3 py-1 bg-green-500 text-white rounded' onClick={mas}>   +1 </button>
 </div>
   )
 }

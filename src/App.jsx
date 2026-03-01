@@ -7,7 +7,7 @@ import { Comidas } from "./data"
 function App() {
   return (
 <><Navbar/>
-    <div className="min-h-screen bg-gray-100 flex justify-center items-center">
+    <div className="min-h-screen bg-mauve-800 flex justify-center items-center ">
       
       {Comidas.map(x => (
         <Carta 
