@@ -1,0 +1,80 @@
+bg cambia el color de fondo
+bg-red-500
+bg-white
+el numero es para la intensidad
+div className="bg-blue-500"
+
+text cambia el color del texto
+    text-white-10
+    p className="text-white"
+para el tamaño del texto 
+text-sm
+text-lg
+text-xl
+text-2xl
+text-4xl
+
+espaciado p
+p-4      todo
+px-4    horizontal
+py-4    vertical
+pt-4   arriba
+div className="p-4"
+
+espacio externo
+m-4
+mt-4
+mb-4
+mx-auto  centrar horizontalmente
+
+tamaños 
+ancho w
+w-full
+w-1/2
+w-64
+
+alto h
+h-64
+h-screen
+
+alineacion flex
+flex 
+alineacion horizontal
+justify-center
+justify-between
+justify-end
+alineacion vertical
+items-center
+items-start
+items-end
+ejemplo 
+div className="flex justify-center items-center"
+
+
+bordes border
+border
+border-2
+border-blue-500
+esquinas redondas
+rounded
+rounded-lg
+rounded-full
+
+sombra
+shadow
+shadow-md
+shadow-lg
+
+
+efectos
+hover al pasar el mouse
+hover:bg-blue-700
+hover:scale-105
+transition
+duration-300
+
+posicion
+relative
+absolute
+top-4
+left-4
