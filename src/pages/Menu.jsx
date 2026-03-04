@@ -8,5 +8,6 @@ export default function Menu() {
         <Card key={product.id} {...product} />
       ))}
     </div>
+    
   );
 }

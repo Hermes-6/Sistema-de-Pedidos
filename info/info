@@ -4,6 +4,7 @@ bg-white
 el numero es para la intensidad
 div className="bg-blue-500"
 
+
 text cambia el color del texto
     text-white-10
     p className="text-white"
