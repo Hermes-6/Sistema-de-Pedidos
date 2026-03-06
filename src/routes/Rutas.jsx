@@ -6,6 +6,7 @@ import { Layout } from '../layout'
 export function Rutas() {
 return (
 <Routes>
+  
 <Route element={<Layout/>}>
     <Route path='/' element={<Home/>}/>
     <Route path='/bebidas' element={<Bebidas/>}/>
