@@ -1,4 +1,3 @@
-
 import { useNavigate } from "react-router"
 import {Navbar} from "../components"
 import { Carta } from "../components"
@@ -7,7 +6,7 @@ import { Comidas } from "../data"
 export function Home() {
     const navigate = useNavigate()
   return (
-    <><Navbar/>
+    <>
     <h1>Filtro</h1>
 
     <div><div className="">
