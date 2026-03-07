@@ -1,8 +1,9 @@
 //para que pueda usar el ustate
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { Carro } from '../../context';
 
 export function Botton() {
-  
+  const {añadirCarro} = useContext(Carro)
  const[numeroactual, cambiarnumero] = useState(0)
  const mas=()=>cambiarnumero(x=>x +1);
  const menos=()=>{
@@ -18,6 +19,7 @@ export function Botton() {
   <button className='cursor-pointer px-3 py-1 bg-red-500 text-white rounded'onClick={menos}> -1 </button>
   <span className='text-lg font-bold'>{numeroactual}</span>
   <button className='cursor-pointer px-3 py-1 bg-green-500 text-white rounded' onClick={mas}>   +1 </button>
+<button className='bg-violet-800' onClick={añadirCarro}>agregar carrito</button>
 </div>
   )
 }

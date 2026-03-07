@@ -16,7 +16,7 @@ const Comidas = [
         id:2,
     nombre:"???",
     precio:"FREE",
-    categoria:"platos gourmet",
+    categoria:"Platos gourmet",
     jpn:A,
   },
   {

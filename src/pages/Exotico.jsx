@@ -12,7 +12,8 @@ export function Exotico() {
     <div className="min-h-screen  flex justify-center items-center ">
       {Comidas.filter(x=>x.categoria==="Platos exoticos").map(x=>(<Carta producto={x}/>))}
   
-  </div></div>    
+  </div>
+  </div>    
   )
 }
 

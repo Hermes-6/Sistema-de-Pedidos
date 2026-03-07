@@ -4,7 +4,8 @@ import { Comidas } from "../data"
 
 export  function Gourmet() {
   return (
-    <div>      {Comidas.filter(x=>x.categoria==="Platos gourmet").map(x=>(<Carta producto={x}/>))}
+    <div className='min-h-screen  flex justify-center items-center '>  
+          {Comidas.filter(x=>x.categoria==="Platos gourmet").map(x=>(<Carta producto={x}/>))}
     </div>
   )
 }
