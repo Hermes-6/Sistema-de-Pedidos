@@ -1,14 +1,15 @@
 import React, { useContext } from 'react'
 import { Carro } from '../context'
-import { Carta } from '../components'
+import { Tarjet } from '../components'
 
 export function CarritoRunRun() {
 const {carr} = useContext(Carro)
+console.log(carr)
 
   return (
 
 <div>
-{carr.map(x => (<Carta producto={x}/> ))
+{carr.map(x => (<Tarjet key={x.id} producto={x}/> ))
 }
     </div>
   )

@@ -3,7 +3,7 @@ import { Carta } from "../components"
 import { Comidas } from "../data"
 
 export function Home() {
-    const navigate = useNavigate()
+    
   return (
     <>
   

@@ -3,7 +3,7 @@ import { Botton } from './Botton'
 import { Descripcion } from './Descripcion'
 
 export function Carta({producto}) {
-  const{nombre,jpn,precio,categoria}=producto
+  const{nombre,jpn,precio,categoria,}=producto
 
 
   return (
@@ -15,7 +15,7 @@ export function Carta({producto}) {
         <span className='text-sm text-blue-500 block mt-2'>
           {categoria}
         </span>
-        <Botton/>
+        <Botton producto={producto}/>
       </div>
     </div>
     

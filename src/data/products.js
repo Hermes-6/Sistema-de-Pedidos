@@ -10,7 +10,8 @@ const Comidas = [
     nombre: "Mogondrilo",
     precio: 1500,
     categoria: "Platos exoticos",
-    jpn: imagen
+    jpn: imagen,
+    cantidad:0
   },
   {
         id:2,
@@ -18,34 +19,39 @@ const Comidas = [
     precio:"FREE",
     categoria:"Platos gourmet",
     jpn:A,
+    cantidad:0
   },
   {
         id:3,
    precio:20,
    nombre:"Gastritis",
    jpn:GAS,
-   categoria:"Platos gourmet"
+   categoria:"Platos gourmet",
+   cantidad:0
   },
   {
        id:4,
     precio:100,
     nombre:"caviar de pollo",
     jpn:H,
-    categoria:"Platos exoticos"
+    categoria:"Platos exoticos",
+    cantidad:0
   },
   {
         id:5,
     precio:100,
     nombre:"Elixir de la Vida",
     jpn:Z,
-    categoria:"bebidas"
+    categoria:"bebidas",
+    cantidad:0
   },
   {
         id:6,
     precio:100,
     nombre:"holas",
     jpn:Z,
-    categoria:"Platos Caseros"
+    categoria:"Platos Caseros",
+    cantidad:0
   },
 
 ];
