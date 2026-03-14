@@ -2,53 +2,37 @@ import React from 'react'
 import { createContext,useState} from 'react'
 //creo el contexto
 export const Carro=createContext()
-//la funcion
-export function CarritoContext({children}) {
-//creo el arreglo del carro donde va a estar mis compras añadir es para modificar
-// y en usestate[] por que pues va a empezar vacio
-    const [carr,añadir]=useState([])
     //aqui empizan las condiciones y funciones :c
-//creo la variable añadircarro y usare producto y el numeroaactual    
-const añadirCarro=(producto,numeroactual)=>{
-    //si es 0 no hace nada por que pues no hay nada para agregar xd
-if(numeroactual<1){
+export function CarritoContext({children}) {
+    const [carr,añadir]=useState([])
 
-}else{
-    //si no es 0 pues si hay algo
-    //creo existe para saber si existe x es el producto que entra
-    //  y lo checa por id ya que es mas facil si id es igual a producto id 
-    //osea si ya esta pue
-    //y use some por que lo voy a usar como condicion y some regresa booleans 
-  const existe=carr.some(x=>x.id===producto.id)
-  //si es true hace
-if(existe){
-    //creo si la variable y adentro uso el map y checo el arr del carr 
-    //y le pongo una condicion si ya existe que agregue nomas la cantidad
- const si=carr.map(x=>{
-    if(x.id===producto.id){
-        return {...x,cantidad:x.cantidad + numeroactual}
-   //y si no existe que agregue el producto entero
+    
+const borrarTodo=()=>{añadir([])}
+
+const borrarCantidad=(producto)=>{
+const existe=carr.find(x=>x.id===producto.id)
+    if(existe.cantidad>1){
+        const quitar=carr.map(x=>{return x.id===producto.id?{...x,cantidad:x.cantidad-1}:x})
+    añadir(quitar)
     }else{
-        return x
+        const borrar=carr.filter(x=>x.id!==producto.id)
+        añadir(borrar)
     }
- 
-})
-//esto es el else de si es 0 si si tiene algo pues que aga toda las 
-// condicion de arriba y ya si sumo o metio pues que lo meta 
- añadir(si)
-//si no existe pues que lo agregue todo con la cantidad
-     }else{
-    añadir([...carr,{...producto,cantidad:numeroactual}])
-        
-        }
-    }
+    };
 
-//falta boton para eliminar todo y boton para eliminar cantidad
+const añadirCarro=(producto,numeroactual)=>{
+const existe=carr.find(x=>x.id===producto.id)
 
+    if(existe){
+    const sumarCantidad=carr.map(x=>{return x.id===producto.id?{...x,cantidad:x.cantidad+1}:x})
+añadir(sumarCantidad)
+}else{
+    añadir([...carr,{...producto,cantidad:1}])
 }
-//esto es para envolver el contexto en toda la app
+};
+
 return (
-<Carro.Provider value={{carr,añadirCarro}}>
+<Carro.Provider value={{carr,añadirCarro,borrarTodo,borrarCantidad}}>
     {children}
 </Carro.Provider>
 )

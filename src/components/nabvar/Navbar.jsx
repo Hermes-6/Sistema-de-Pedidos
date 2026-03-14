@@ -1,9 +1,11 @@
 import React from 'react'
 import { useNavigate } from 'react-router'
 import { useContext } from 'react'
-import { Home, ShoppingCart, Coffee} from "lucide-react";
-export function Navbar() {
+import { Home, ShoppingCart, Coffee,Trash2} from "lucide-react";
+import { Carro } from '../../context';
+export function Navbar({toggleCart}) {
   const navigate=useNavigate()
+  const {borrarTodo} = useContext(Carro)
   return (
 
     <div> 
@@ -14,17 +16,20 @@ export function Navbar() {
           <button className='rounded-full py-2 px-3 text-xs font-bold cursor-pointer bg-red-500' onClick={()=>navigate("/")}>
             cerrar sesion
           </button>
-        <button className='rounded-full py-2 px-3 text-xs font-bold cursor-pointer bg-green-500' onClick={()=>navigate("/carrito")}>Carrito  
+        <button className='rounded-full py-2 px-3 text-xs font-bold cursor-pointer bg-green-500' onClick={toggleCart}>Carrito  
         </button>
       </div> 
-      <div className=''>
+      <div className='max-w-7xl mx-auto px-6 py-8'>
 
-<h1>Filtro</h1>
-        <button className='cursor-pointer px-2 ml-4 py-1 bg-purple-900 text-white rounded' onClick={()=>navigate("/home")}><Home size={20} />menu</button>  
-<button className="cursor-pointer px-2 ml-4 py-1 bg-red-500 text-white rounded" onClick={()=> navigate("/bebidas")}>bebidas</button>
-    <button className="cursor-pointer px-2 ml-4  py-1 bg-zinc-500 text-white rounded" onClick={()=> navigate("/caseros")}>caseros</button>
-  <button className="cursor-pointer px-2  ml-4  py-1 bg-blue-500 text-white rounded" onClick={()=> navigate("/exotico")}>exoticos</button>
-  <button className="cursor-pointer px-2 ml-4  py-1 bg-yellow-500 text-white rounded" onClick={()=> navigate("/gourmet")}>gourmet</button>
+<h1 className="text-gray-600 font-medium">
+          Filtrar por categoría:
+        </h1>
+        
+        <button className='bg-gray-200 px-4 py-2 rounded-full text-sm hover:bg-gray-300' onClick={()=>navigate("/home")}>menu</button>  
+<button className="bg-gray-200 px-4 py-2 rounded-full text-sm hover:bg-gray-300" onClick={()=> navigate("/bebidas")}>bebidas</button>
+    <button className="bg-gray-200 px-4 py-2 rounded-full text-sm hover:bg-gray-300" onClick={()=> navigate("/caseros")}>caseros</button>
+  <button className="bg-gray-200 px-4 py-2 rounded-full text-sm hover:bg-gray-300" onClick={()=> navigate("/exotico")}>exoticos</button>
+  <button className="bg-gray-200 px-4 py-2 rounded-full text-sm hover:bg-gray-300" onClick={()=> navigate("/gourmet")}>gourmet</button>
       </div>
       </div>
       
