@@ -1,11 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router'
-import { useContext } from 'react'
-import { Home, ShoppingCart, Coffee,Trash2} from "lucide-react";
-import { Carro } from '../../context';
 export function Navbar({toggleCart}) {
   const navigate=useNavigate()
-  const {borrarTodo} = useContext(Carro)
   return (
 
     <div> 
@@ -18,20 +14,22 @@ export function Navbar({toggleCart}) {
           </button>
         <button className='rounded-full py-2 px-3 text-xs font-bold cursor-pointer bg-green-500' onClick={toggleCart}>Carrito  
         </button>
-      </div> 
-      <div className='max-w-7xl mx-auto px-6 py-8'>
+      </div>
+      <div className='bg-gray-200 w-full'>
+      <div className='flex gap-3 flex-wrap max-w-7xl mx-auto px-6 py-8'>
 
-<h1 className="text-gray-600 font-medium">
+<h1 className="text font-medium">
           Filtrar por categoría:
         </h1>
         
-        <button className='bg-gray-200 px-4 py-2 rounded-full text-sm hover:bg-gray-300' onClick={()=>navigate("/home")}>menu</button>  
-<button className="bg-gray-200 px-4 py-2 rounded-full text-sm hover:bg-gray-300" onClick={()=> navigate("/bebidas")}>bebidas</button>
-    <button className="bg-gray-200 px-4 py-2 rounded-full text-sm hover:bg-gray-300" onClick={()=> navigate("/caseros")}>caseros</button>
-  <button className="bg-gray-200 px-4 py-2 rounded-full text-sm hover:bg-gray-300" onClick={()=> navigate("/exotico")}>exoticos</button>
-  <button className="bg-gray-200 px-4 py-2 rounded-full text-sm hover:bg-gray-300" onClick={()=> navigate("/gourmet")}>gourmet</button>
+        <button className='bg-white px-4 py-2 rounded-full text-sm ' onClick={()=>navigate("/home")}>menu</button>  
+<button className="bg-white px-4 py-2 rounded-full text-sm " onClick={()=> navigate("/menu/bebidas")}>bebidas</button>
+    <button className="bg-white px-4 py-2 rounded-full text-sm " onClick={()=> navigate("/menu/caseros")}>caseros</button>
+  <button className="bg-white px-4 py-2 rounded-full text-sm " onClick={()=> navigate("/menu/Exotico")}>Exoticos</button>
+  <button className="bg-white px-4 py-2 rounded-full text-sm " onClick={()=> navigate("/menu/gourmet")}>gourmet</button>
       </div>
       </div>
-      
+        </div> 
+
   )
 }

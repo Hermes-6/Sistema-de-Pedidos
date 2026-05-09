@@ -58,7 +58,7 @@ export function Login() {
                         href="#"
                         className="font-medium text-purple-600 hover:underline"
                     >
-                        Sign up
+                       <button onClick={()=>navigate("/probando")}>Sign up </button> 
                     </a>
                 </p>
             </div>
