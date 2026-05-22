@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router"
 import { Carta } from "../components"
-import { Comidas } from "../data"
 import{useState,useEffect}from"react"
 import Apidatos from "../service/Apidatos"
 export function Home() {
@@ -12,14 +11,14 @@ const datosDB=async()=>{
   setComidas(comidasdb.data);
   console.log(comidasdb.data)
 }
-
+//llamo la bd para recibir la informacion de las cartas
 useEffect(()=>{
   datosDB()
 },[])
 
   return (
     <div className="bg-gray-200 min-h-screen p-6"> 
-  
+  {/* esto crea las cartas */}
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       {comida.map(x => (
         <Carta key={x._id} producto={x} 

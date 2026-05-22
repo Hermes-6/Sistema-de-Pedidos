@@ -22,7 +22,7 @@ const guardarPedido =async()=>{
   //mandar carr
 await ApiTicket.crearDatos(pedido);
   //vaciar carrito
-  borrarTodo();
+  //borrarTodo();
   //navegar
   navigate("/ticket");
 }

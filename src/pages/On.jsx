@@ -1,19 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+//el login on
 export function On() {
-  const [preview, setPreview] = useState(null);
+  
 const navigate=useNavigate();
-  const handleImage = (file) => {
-    if (file) {
-      setPreview(URL.createObjectURL(file));
-    }
-  };
 
+//conectamos con la bd
   const handleLogin=async()=>{
-
-
  try {
-
     const res = await fetch("http://localhost:4000/api/usuario/login", {
       method: "POST",
       headers: {
@@ -24,7 +18,7 @@ const navigate=useNavigate();
         contraseña
       })
     });
-
+//mensajes de error y condiciones para que entre
     const data = await res.json();
 
     console.log(data);
@@ -33,10 +27,16 @@ const navigate=useNavigate();
 
       alert("Login correcto");
 
+      const usuario=data.usuario;
       // guardar usuario
-      localStorage.setItem("usuario", JSON.stringify(data.usuario));
+      localStorage.setItem("usuario", JSON.stringify(usuario));
+
+      if(usuario.rol==="admin"){
+        navigate("/admin");
+      }else{
 
       navigate("/home");
+      }
 
     } else {
       alert(data.message);
@@ -48,10 +48,12 @@ const navigate=useNavigate();
   }
 
   }
-
+//para guardar nombre y la contraseña
   const [nombre,setNombre]=useState("");
   const [contraseña,setContraseña]=useState("");
 
+
+  //el login que agarre de tailwind
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-animated-gradient relative overflow-hidden">
 
@@ -68,42 +70,13 @@ const navigate=useNavigate();
 
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-white mb-2">Welcome Back</h1>
-            <p className="text-white/80">Authenticate with your image</p>
+          
           </div>
+          
 
-          {/* Upload */}
-          {!preview && (
-            <label className="block border-2 border-dashed border-white/30 rounded-xl p-6 text-center cursor-pointer hover:border-white/50 transition">
-              <input
-                type="file"
-                className="hidden"
-                accept="image/*"
-                onChange={(e) => handleImage(e.target.files[0])}
-              />
-              
+          
 
-              <div className="flex flex-col items-center">
-                <p className="text-white font-medium">
-                  Click to upload your image
-                </p>
-                <p className="text-white/60 text-sm mt-1">
-                  Or drag and drop
-                </p>
-              </div>
-            </label>
-          )}
-
-          {/* Preview */}
-          {preview && (
-            <div className="mt-4 flex justify-center">
-              <img
-                src={preview}
-                className="w-32 h-32 rounded-full object-cover border-4 border-white/30"
-              />
-            </div>
-          )}
-
-          {/* Inputs */}
+          {/* los cuadritos*/}
           <div className="space-y-4 mt-6">
             <input
               type="text"
@@ -123,22 +96,24 @@ const navigate=useNavigate();
           </div>
 
           {/* Button */}
-          <button onClick={handleLogin}className="w-full mt-6 bg-white text-indigo-600 py-3 rounded-lg font-semibold hover:bg-white/90 transition">
-            Authenticate
+          <button onClick={handleLogin}
+          className="w-full mt-6 bg-white text-indigo-600 py-3 rounded-lg font-semibold hover:bg-white/90 transition">
+            Pasar
           </button>
 
           <div className="mt-4 text-center">
             <p className="text-white/70 text-sm cursor-pointer hover:text-white">
-              Forgot your password?
+              se te olvido jaja?
             </p>
           </div>
         </div>
 
         <div className="text-center mt-4">
           <p className="text-white/50 text-sm">
-            Don't have an account?{" "}
-            <button onClick={()=>navigate("/n")} className="text-white hover:underline cursor-pointer">
-              Sign up
+            no tener cuenta?{" "}
+            <button onClick={()=>navigate("/n")}
+             className="text-white hover:underline cursor-pointer">
+              registrarse
             </button>
           </p>
         </div>

@@ -2,10 +2,41 @@ import React from 'react'
 import {Routes,Route,Navigate} from "react-router-dom"
 import {Home,CarritoRunRun,Ticket,Menu,Probando,On,Insup} from '../pages'
 import { Layout } from '../layout'
+import { AdminLayouts,Header,MenuAD,PanelAd,NewCard } from '../admin'
+import { RoleRoute } from './RoleRoutes'
 
 export function Rutas() {
-return (
+
+  const loadLayout=(Layout,Page)=>{
+    return(
+      <Layout>
+        <Page/>
+      </Layout>
+    )
+  }
+
+
+  return (
+
+
 <Routes>
+<Route
+  path='/new'
+  element={
+    <RoleRoute role="admin">
+      <NewCard/>
+    </RoleRoute>
+  }
+/>
+
+<Route
+  path='/admin'
+  element={
+    <RoleRoute role="admin">
+      {loadLayout(AdminLayouts, PanelAd)}
+    </RoleRoute>
+  }
+/>  
   <Route path='/' element={<On/>}/>
   <Route path='/n' element={<Insup/>}/>
   

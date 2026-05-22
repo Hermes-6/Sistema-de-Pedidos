@@ -17,7 +17,6 @@ export function Ticket() {
   return (
     <div className="max-w-md mx-auto bg-white p-6 shadow-xl rounded-xl mt-10">
 
-      {/* HEADER */}
       <h1 className="text-2xl font-bold text-center mb-2">
          TICKET
       </h1>
@@ -28,7 +27,7 @@ export function Ticket() {
 
       <hr className="mb-4"/>
 
-      {/* PRODUCTOS */}
+      {/* si no hay nada pues no hay*/}
       {carr.length === 0 ? (
         <p className="text-center text-gray-500">
           No hay productos
@@ -36,7 +35,7 @@ export function Ticket() {
       ) : (
         <>
           {carr.map((item) => (
-            <div key={item.id} className="mb-3 border-b pb-2">
+            <div key={item._id} className="mb-3 border-b pb-2">
 
               <div className="flex justify-between">
                 <span className="font-semibold">

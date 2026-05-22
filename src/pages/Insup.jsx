@@ -1,12 +1,14 @@
 import { useNavigate } from "react-router";
 import { useState } from "react";
-
+//este es el registro insup
 export function Insup() {
     const navigate=useNavigate();
 
-const [nombre,setNombre]=useState("")
+  //para guardar lo del nombre y contraseña como en el login
+    const [nombre,setNombre]=useState("")
 const [contraseña, setContraseña]=useState("")
-
+const [rol,setRol]=useState("user");
+//para llamar la db 
 const handleRegister = async()=>{
   try{
   const res = await fetch("http://localhost:4000/api/usuario/register", {
@@ -16,7 +18,8 @@ const handleRegister = async()=>{
         },
         body: JSON.stringify({
           nombre,
-          contraseña
+          contraseña,
+          rol
         })
       });
 
@@ -36,6 +39,7 @@ const handleRegister = async()=>{
   }
 }
 
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 font-poppins">
 
@@ -50,10 +54,10 @@ const handleRegister = async()=>{
 
             <form className="space-y-4">
 
-              {/* Email */}
+              {/* name*/}
               <div>
                 <label className="mb-2 text-lg dark:text-gray-400">
-                  Email
+                  username
                 </label>
                 <input
                   type="text"
@@ -66,7 +70,7 @@ const handleRegister = async()=>{
                 />
               </div>
 
-              {/* Password */}
+              {/* contra*/}
               <div>
                 <label className="mb-2 text-lg dark:text-gray-400">
                   Password
@@ -81,15 +85,37 @@ const handleRegister = async()=>{
                   focus:scale-105 transition duration-300"
                 />
               </div>
+             
+{/* rol */}
+<div>
+  <label className="mb-2 text-lg dark:text-gray-400">
+    Tipo de usuario
+  </label>
 
-              {/* Button */}
+  <select
+    value={rol}
+    onChange={(e) => setRol(e.target.value)}
+    className="border p-3 shadow-md rounded-lg w-full 
+    dark:bg-indigo-700 dark:text-gray-300 dark:border-gray-700
+    focus:scale-105 transition duration-300"
+  >
+    <option value="user">Usuario normal</option>
+    <option value="admin">Admin</option>
+  </select>
+</div>
+
+
+
+
+
+
               <button
                 type="button"
                 className="bg-gradient-to-r from-blue-500 to-purple-500 
                 shadow-lg mt-6 p-2 text-white rounded-lg w-full 
                 hover:scale-105 hover:from-purple-500 hover:to-blue-500 
                 transition duration-300"
-                onClick={()=>navigate("/home")}
+                onClick={handleRegister}
               >
                 SIGN UP
               </button>
@@ -98,8 +124,9 @@ const handleRegister = async()=>{
             {/* Login link */}
             <div className="flex flex-col mt-4 items-center text-sm">
               <h3 className="dark:text-gray-300">
-                Have an account?
-                <button onClick={handleRegister} className="ml-1 text-blue-400 hover:underline cursor-pointer">
+                ya tener cuenta?
+                <button onClick={()=>navigate("/")}
+                 className="ml-1 text-blue-400 hover:underline cursor-pointer">
                   Log In
                 </button>
               </h3>

@@ -1,6 +1,7 @@
 import React, { use } from 'react'
 import { useNavigate } from 'react-router'
 
+
 export function Probando() {
   const navigate=useNavigate()
   return (

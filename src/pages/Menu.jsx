@@ -14,7 +14,7 @@ const datosDB=async()=>{
   setComidas(comidasdb.data);
   console.log(comidasdb.data)
 }
-
+//ago lo mismo que en home pero con rutasdinamicas
 useEffect(()=>{
   datosDB()
 },[])
