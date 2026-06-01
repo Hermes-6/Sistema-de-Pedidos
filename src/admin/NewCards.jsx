@@ -5,10 +5,10 @@ import DatosDB from "../service/Apidatos";
 export function NewCard() {
 
   const navigate = useNavigate();
+const [imagen, setImagen] = useState(null);
 
   const [form, setForm] = useState({
     nombre: "",
-    descripcion: "",
     precio: "",
     categoria: "",
     cantidad: ""
@@ -24,24 +24,72 @@ export function NewCard() {
 
   // Enviar datos
   const handleSubmit = async (e) => {
-    e.preventDefault();
 
-    try {
+  e.preventDefault();
 
-      console.log(form);
+  try {
 
-      await DatosDB.postDatos(form);
+    let imageUrl = "";
 
-      alert("Producto guardado");
+    // subir imagen
+    if (imagen) {
 
-      navigate("/admin");
+      const data = new FormData();
 
-    } catch (error) {
+      data.append("file", imagen);
 
-      console.log(error);
+      data.append(
+        "upload_preset",
+        "restaurante"
+      );
 
+      const resCloud = await fetch(
+        "https://api.cloudinary.com/v1_1/dwoybersw/image/upload",
+        {
+          method: "POST",
+          body: data
+        }
+      );
+
+      const cloudData = await resCloud.json();
+console.log("Respuesta Cloudinary:", cloudData);
+
+      imageUrl = cloudData.secure_url;
     }
-  };
+
+    // guardar producto
+    const nuevoProducto = {
+      ...form,
+      jpn: imageUrl
+    };
+console.log("Enviando...");
+console.log(nuevoProducto);
+
+    await DatosDB.postDatos(nuevoProducto);
+
+    alert("Producto guardado");
+
+    navigate("/admin");
+
+  } catch (error) {
+
+  console.log(error);
+
+  if (
+    error.response &&
+    error.response.status === 400
+  ) {
+
+    alert("Ya existe un producto con ese nombre");
+
+    return;
+
+  }
+
+  alert("Ocurrió un error");
+
+}
+};
 
   return (
 
@@ -80,23 +128,6 @@ export function NewCard() {
               value={form.nombre}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
-            />
-
-          </div>
-
-          {/* descripcion */}
-          <div>
-
-            <label className="block font-semibold mb-2">
-              Descripción
-            </label>
-
-            <textarea
-              rows="4"
-              name="descripcion"
-              value={form.descripcion}
-              onChange={handleChange}
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none resize-none focus:ring-2 focus:ring-blue-500"
             />
 
           </div>
@@ -157,7 +188,20 @@ export function NewCard() {
           </div>
 
 
+<div>
 
+  <label className="block font-semibold mb-2">
+    Imagen
+  </label>
+
+  <input
+    type="file"
+    accept="image/*"
+    onChange={(e) => setImagen(e.target.files[0])}
+    className="w-full border border-gray-300 rounded-xl px-4 py-3"
+  />
+
+</div>
           {/* boton */}
           <button
             type="submit"

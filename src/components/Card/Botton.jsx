@@ -1,37 +1,83 @@
-import React, { useContext,useState } from 'react'
+
+import React, { useContext, useState } from 'react'
 import { Carro } from '../../context';
 
+export function Botton({ producto }) {
 
+  const { carr, añadirCarro, borrarCantidad } = useContext(Carro);
 
-export function Botton({producto}) {
-  const {añadirCarro,borrarCantidad} = useContext(Carro)
- const[numeroactual, cambiarnumero] = useState(0)
- const mas=()=>cambiarnumero(x=>x +1);
- const menos=()=>{
-  if(numeroactual>0){
-    cambiarnumero(x=>x-1);
-  }
- }
- 
+const productoCarrito = carr.find(
+  item => item._id === producto._id
+);
 
-  return (
-    
-<div className='flex items-center gap-3 mt-4'>
-  <button className='cursor-pointer px-3 py-1 bg-red-500 text-white rounded'onClick={()=>{
-    menos()
-    borrarCantidad(producto)
-  }}> -1 </button>
+const cantidad = productoCarrito
+  ? productoCarrito.cantidad
+  : 0;
 
-  <span className='text-lg font-bold'>{numeroactual}</span>
-  <button className='cursor-pointer px-3 py-1 bg-green-500 text-white rounded' onClick={()=>{
-    mas()
-    añadirCarro(producto)
-  }}>   +1 </button>
+  const agregarProducto = () => {
+    cambiarnumero(1);
+    añadirCarro(producto);
+  };
 
-<button className='bg-violet-600' onClick={()=>{
-  mas()
-añadirCarro(producto,numeroactual);
-  }}>agregar</button>
-</div>
-  )
+  const mas = () => {
+    cambiarnumero(x => x + 1);
+    añadirCarro(producto);
+  };
+
+  const menos = () => {
+
+    if (numeroactual > 1) {
+
+      cambiarnumero(x => x - 1);
+      borrarCantidad(producto);
+
+    } else {
+
+      cambiarnumero(0);
+      borrarCantidad(producto);
+
+    }
+  };
+
+return (
+
+  <div className="mt-4">
+
+    {cantidad === 0 ? (
+
+      <button
+        className="w-full bg-blue-600 text-white py-2 rounded-lg"
+        onClick={() => añadirCarro(producto)}
+      >
+        + Agregar
+      </button>
+
+    ) : (
+
+      <div className="flex justify-between items-center">
+
+        <button
+          className="w-10 h-10 bg-red-500 text-white rounded-lg"
+          onClick={() => borrarCantidad(producto)}
+        >
+          -
+        </button>
+
+        <span className="text-xl font-bold">
+          {cantidad}
+        </span>
+
+        <button
+          className="w-10 h-10 bg-blue-500 text-white rounded-lg"
+          onClick={() => añadirCarro(producto)}
+        >
+          +
+        </button>
+
+      </div>
+
+    )}
+
+  </div>
+);
 }

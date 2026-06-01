@@ -5,7 +5,7 @@ import { Trash2} from "lucide-react";
 
 export function Tarjet({producto}) {
   const{nombre,jpn,precio,cantidad}=producto
-const {borrarTodo} =useContext(Carro)
+const {eliminarProducto} =useContext(Carro)
   return (
     
     <div className='flex gap-3 bg-gray-100 rounded-xl p-3 items-center'>
@@ -22,7 +22,7 @@ ${precio} c/u
         </span>
         <span className='text-sm font-semibold text-green-600'>subtotal:{precio*cantidad}</span>
       </div>
-      <button className='text-red-500 hover:text-red-700 text-lg' onClick={()=>{borrarTodo()}}><Trash2 size={20}/></button>
+      <button className='text-red-500 hover:text-red-700 text-lg' onClick={()=>{eliminarProducto(producto)}}><Trash2 size={20}/></button>
     </div>
     
   )

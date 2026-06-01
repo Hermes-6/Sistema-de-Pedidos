@@ -4,7 +4,7 @@ import {Home,CarritoRunRun,Ticket,Menu,Probando,On,Insup} from '../pages'
 import { Layout } from '../layout'
 import { AdminLayouts,Header,MenuAD,PanelAd,NewCard } from '../admin'
 import { RoleRoute } from './RoleRoutes'
-
+import { EditCard } from "../admin/EditCard";
 export function Rutas() {
 
   const loadLayout=(Layout,Page)=>{
@@ -25,6 +25,15 @@ export function Rutas() {
   element={
     <RoleRoute role="admin">
       <NewCard/>
+    </RoleRoute>
+  }
+/>
+
+<Route
+  path='/edit/:id'
+  element={
+    <RoleRoute role="admin">
+      <EditCard/>
     </RoleRoute>
   }
 />

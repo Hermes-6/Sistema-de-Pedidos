@@ -32,9 +32,17 @@ añadir(sumarCantidad)
     añadir([...carr,{...producto,cantidad:1}])
 }
 };
+const eliminarProducto = (producto) => {
+
+  const nuevoCarrito = carr.filter(
+    x => x._id !== producto._id
+  );
+
+  añadir(nuevoCarrito);
+};
 
 return (
-<Carro.Provider value={{carr,añadirCarro,borrarTodo,borrarCantidad}}>
+<Carro.Provider value={{carr,añadirCarro,borrarTodo,borrarCantidad,eliminarProducto}}>
     {children}
 </Carro.Provider>
 )
